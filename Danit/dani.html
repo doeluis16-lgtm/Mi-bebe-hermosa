@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para el amor de mi vida ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #fff0f5;
+      --card-bg: #ffffff;
+      --primary: #ff7b9c;
+      --primary-hover: #ff527b;
+      --accent: #ffb6c1;
+      --text-color: #4a4a4a;
+      --shadow: 0 10px 25px rgba(255, 123, 156, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffe6eb 0%, #fff0f5 50%, #f3e5f5 100%);
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text-color);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 60px;
+    }
+
+    /* Corazones flotantes de fondo */
+    .heart-bg {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear forwards;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.8rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #777;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+    }
+
+    h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Contador de Tiempo */
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .timer-box {
+      background: #fff5f7;
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px dashed var(--accent);
+    }
+
+    .timer-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .timer-label {
+      font-size: 0.85rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Galería Polaroid */
+    .polaroid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .polaroid {
+      background: white;
+      padding: 15px 15px 25px 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transform: rotate(-2deg);
+      transition: transform 0.3s ease;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .polaroid:nth-child(even) {
+      transform: rotate(2deg);
+    }
+
+    .polaroid:hover {
+      transform: scale(1.05) rotate(0deg);
+      z-index: 2;
+    }
+
+    .polaroid-img-container {
+      width: 100%;
+      height: 220px;
+      background-color: #f9f9f9;
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .polaroid-caption {
+      font-family: 'Sacramento', cursive;
+      font-size: 1.7rem;
+      color: #444;
+      margin-top: 15px;
+    }
+
+    /* Medidor de Amor */
+    .love-meter-box {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .meter-bar {
+      width: 100%;
+      height: 25px;
+      background: #ffe3ec;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 15px 0;
+      border: 2px solid var(--accent);
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff9ebb, #ff527b);
+      border-radius: 20px;
+      transition: width 1s ease-in-out;
+    }
+
+    /* Línea del Tiempo */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      border-left: 3px dashed var(--accent);
+      margin: 20px 0 10px 10px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 25px;
+      padding-left: 20px;
+    }
+
+    .timeline-item::before {
+      content: '❤️';
+      position: absolute;
+      left: -32px;
+      top: 0;
+      background: white;
+      border-radius: 50%;
+      font-size: 14px;
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .timeline-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .timeline-desc {
+      font-size: 0.95rem;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    /* Cuadro de Frases y Razones */
+    .interactive-box {
+      text-align: center;
+      padding: 20px;
+      background: #faf0f5;
+      border-radius: 15px;
+    }
+
+    .box-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.9rem;
+      color: #555;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 123, 156, 0.3);
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+      transform: scale(1.03);
+    }
+
+    /* Carta */
+    .letter-container {
+      background: #fffdf9;
+      border: 1px solid #f2e3d5;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+      line-height: 1.9;
+      font-size: 1.1rem;
+      color: #5a5a5a;
+    }
+
+    footer {
+      text-align: center;
+      color: #999;
+      font-size: 0.95rem;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Encabezado -->
+    <header>
+      <h1>Para Mi Persona Favorita ❤️</h1>
+      <p>Un espacio dedicado a nuestra historia y a todo lo bonito que vivimos juntos</p>
+    </header>
+
+    <!-- Contador de Tiempo Oficial desde el 09/07/2024 -->
+    <section>
+      <h2>Nuestro Tiempo Oficial de Novios</h2>
+      <p style="text-align: center; color: #888; margin-bottom: 15px;">Desde el 09 de Julio de 2024 construyendo este gran amor...</p>
+      <div class="timer-grid">
+        <div class="timer-box">
+          <div class="timer-number" id="days">00</div>
+          <div class="timer-label">Días</div>
+        </div>
+        <div class="timer-box">
+          <div class="timer-number" id="hours">00</div>
+          <div class="timer-label">Horas</div>
+        </div>
+        <div class="timer-box">
+          <div class="timer-number" id="minutes">00</div>
+          <div class="timer-label">Minutos</div>
+        </div>
+        <div class="timer-box">
+          <div class="timer-number" id="seconds">00</div>
+          <div class="timer-label">Segundos</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galería Polaroid con las imágenes de C:\Danit -->
+    <section>
+      <h2>Nuestros Momentos Especiales</h2>
+      <div class="polaroid-grid">
+        
+        <!-- Foto 1 -->
+        <div class="polaroid">
+          <div class="polaroid-img-container">
+            <img src="C:/Danit/foto1.jpeg" alt="Nuestro Momento 1">
+          </div>
+          <div class="polaroid-caption">Nuestro primer beso 💋</div>
+        </div>
+
+        <!-- Foto 2 -->
+        <div class="polaroid">
+          <div class="polaroid-img-container">
+            <img src="C:/Danit/foto2.jpeg" alt="Nuestro Momento 2">
+          </div>
+          <div class="polaroid-caption">Campamento en Monte Tláloc ⛺</div>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="polaroid">
+          <div class="polaroid-img-container">
+            <img src="C:/Danit/foto3.jpeg" alt="Nuestro Momento 3">
+          </div>
+          <div class="polaroid-caption">Escape a la playa 🌊</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Línea del Tiempo -->
+    <section>
+      <h2>Nuestra Historia</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">1 de Junio de 2024</div>
+          <div class="timeline-title">Nuestro Primer Beso 💋</div>
+          <div class="timeline-desc">El instante mágico donde todo cobró sentido y comenzó esta linda conexión.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">9 de Julio de 2024</div>
+          <div class="timeline-title">El Inicio de Nuestro Noviazgo ❤️</div>
+          <div class="timeline-desc">El día en que decidimos caminar juntos y empezar formalmente esta bonita aventura.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Monte Tláloc</div>
+          <div class="timeline-title">Campamento Inolvidable ⛺</div>
+          <div class="timeline-desc">Bajo las estrellas, entre frío, risas y la mejor compañía del mundo.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Un Viaje Especial</div>
+          <div class="timeline-title">Escape a la Playa 🌊</div>
+          <div class="timeline-desc">El mar, el sol y recuerdos grabados para siempre en el corazón.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Hoy y Siempre</div>
+          <div class="timeline-title">Floreciendo y Madurando 🌱✨</div>
+          <div class="timeline-desc">Cada día nuestro amor se fortalece, aprende y crece de una forma cada vez más hermosa.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Medidor de Amor Interactivo -->
+    <section>
+      <h2>Medidor de Amor</h2>
+      <div class="love-meter-box">
+        <p>¿Qué tanto te amo hoy?</p>
+        <div class="meter-bar">
+          <div class="meter-fill" id="loveFill"></div>
+        </div>
+        <p id="loveText" style="font-weight: bold; color: var(--primary);">0%</p>
+        <button class="btn" onclick="fillLoveMeter()">¡Calcular mi amor por ti! 💖</button>
+      </div>
+    </section>
+
+    <!-- Razones Por Las Que Te Amo -->
+    <section>
+      <h2>Razones Por Las Que Te Amo</h2>
+      <div class="interactive-box">
+        <div class="box-text" id="reasonDisplay">
+          "Haz clic en el botón para ver una razón..."
+        </div>
+        <button class="btn" onclick="nextReason()">Ver otra razón 💌</button>
+      </div>
+    </section>
+
+    <!-- Carta de Amor -->
+    <section>
+      <h2>Una Cartita Especial</h2>
+      <div class="letter-container">
+        Hola, mi amor 💕<br><br>
+        Desde aquel 1 de junio cuando nos dimos nuestro primer beso, supe que lo contigo no era algo pasajero, sino el inicio de algo verdaderamente especial.<br><br>
+        Haber iniciado formalmente nuestro camino el 9 de julio ha sido de las mejores decisiones de mi vida. Hemos compartido momentos increíbles: desde pasar frío y ver las estrellas en el campamento en Monte Tláloc, hasta sentir la brisa del mar y la paz en la playa. Cada recuerdo a tu lado tiene un lugar muy sagrado en mi corazón.<br><br>
+        Me llena de orgullo ver cómo hoy en día nuestro amor sigue floreciendo y madurando. Aprendemos juntos, crecemos juntos y fortalecemos este lazo día con día. Gracias por ser mi lugar seguro, mi compañía favorita y el motivo de tantas de mis sonrisas.<br><br>
+        Prometo seguir cuidando lo nuestro con todo el cariño del mundo.<br><br>
+        Con todo mi amor,<br>
+        <b>Siempre tuyo ❤️</b>
+      </div>
+    </section>
+
+    <footer>
+      Hecho con todo el corazón del mundo para ti 💖
+    </footer>
+
+  </div>
+
+  <script>
+    // FECHA DE INICIO DE NOVIAZGO: 9 de Julio de 2024
+    const startDate = new Date(2024, 6, 9, 0, 0, 0); 
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / 1000 / 60) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('days').innerText = String(days).padStart(2, '0');
+        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+      }
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // MEDIDOR DE AMOR
+    function fillLoveMeter() {
+      const fill = document.getElementById('loveFill');
+      const text = document.getElementById('loveText');
+      fill.style.width = '100%';
+      text.innerText = '¡1000000% (Infinito y más allá)! 🚀💖';
+      
+      for(let i=0; i<15; i++) {
+        setTimeout(createHeart, i * 100);
+      }
+    }
+
+    // RAZONES POR LAS QUE TE AMO
+    const reasons = [
+      "Por la paz que siento cuando estoy a tu lado.",
+      "Por nuestros recuerdos en Monte Tláloc y en la playa.",
+      "Porque nuestro amor madura y florece cada día más.",
+      "Por la forma tan bonita en la que nos apoyamos.",
+      "Por cómo haces que los días comunes sean inolvidables.",
+      "Simplemente por ser tú y hacer mi mundo infinitamente mejor."
+    ];
+
+    let currentReason = 0;
+    function nextReason() {
+      const display = document.getElementById('reasonDisplay');
+      display.innerText = `"${reasons[currentReason]}"`;
+      currentReason = (currentReason + 1) % reasons.length;
+    }
+
+    // CORAZONES FLOTANTES DE FONDO
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-bg');
+      heart.innerHTML = ['❤️', '💖', '🌸', '✨', '💕', '🌙'][Math.floor(Math.random() * 6)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+      heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+      
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
